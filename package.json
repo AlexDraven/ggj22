@@ -5,6 +5,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "start": "npm run build && electron .",
+    "dev": "concurrently \"tsc -w\" \"electron .\"",
     "clean": "rimraf dist/",
     "copy-files": "copyfiles -u 1 src/**/*.html src/**/*.css dist/",
     "build": "npm run clean && tsc && npm run copy-files",
@@ -21,8 +22,11 @@
     "url": "https://github.com/AlexDraven/ggj22/issues"
   },
   "homepage": "https://github.com/AlexDraven/ggj22#readme",
-  "dependencies": {},
+  "dependencies": {
+    "electron-reload": "^2.0.0-alpha.1"
+  },
   "devDependencies": {
+    "concurrently": "^7.0.0",
     "copyfiles": "^2.4.1",
     "electron": "^16.0.8",
     "rimraf": "^3.0.2"

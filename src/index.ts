@@ -1,8 +1,12 @@
 import {app, ipcMain, BrowserWindow} from 'electron';
 
-app.on('ready', initWindows);
+//app.on('ready', initWindows);
+app.whenReady().then(main);
 
-function initWindows(): void {
+import electronReload from 'electron-reload';
+electronReload(__dirname, {}); 
+
+async function main() {
     let mainWindows = new BrowserWindow({
         width: 800,
         height: 600,
