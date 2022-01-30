@@ -7,6 +7,7 @@ import time
 start_time = time.time()
 seconds = 0.01
 frame_count = 0
+ascii_frame_count = 0
 
 # Ascii characters used to create the output 
 ASCII_CHARS = ["@", "#", "S", "%", "?", "*", "+", ";", ":", ",", "."]
@@ -25,6 +26,7 @@ def pix2chars(image):
 
 def generate_frame(image,new_width=70):
 	global frame_count
+	global ascii_frame_count
 	new_image_data = pix2chars(resized_gray_image(image))
 	#time.sleep(0.5)
 	total_pixels = len(new_image_data)
@@ -33,10 +35,13 @@ def generate_frame(image,new_width=70):
 
     #f = open("myfile.txt", "x")
 	sys.stdout.write(ascii_image)
-	f = open("testToAscii.txt", "a")
 	frame_count += 1
-	f.write("\n"+ascii_image+"\n <break> frameCount="+str(frame_count))
-	f.close()
+	if int(frame_count) % 10 == 0:
+		ascii_frame_count += 1
+		f = open("testToAscii.txt", "a")
+		f.write("\n"+ascii_image+"\n <break> asciiFrameCount="+str(ascii_frame_count)+" frameCount="+str(frame_count))
+		f.close()
+
 	# os.system('cls' if os.name == 'nt' else 'clear')
 
 	#export to json
